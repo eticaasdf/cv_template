@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+
+% Estilo del documento
+\usepackage[utf8]{inputenc} 		% Permite escribir acentos normalmente
+\usepackage[T1]{fontenc}  			% Permite caracterse UTF-8 en el codigo
+\setlength{\headheight}{14.0pt}		% Quita warning de fancy header (no tengo muy claro que hace)
+\usepackage{geometry}				% Permite editar los márgenes del documento y su formato
+\usepackage[english]{babel} 		% Tipo de letra e idioma
+\usepackage{indentfirst}			% Tabula el primer párrafo de un cada seccion/subseccion
+\usepackage{hyperref}				% Referencias dentro del documento e hipervínculos fuera
+\usepackage{graphicx}				% Incluir imágenes, Gull page: http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage[export]{adjustbox} 		% Para el layout de las imágenes (e.g. poder poner right, left en el includegraphix)
+\usepackage{listings}			% Mostrar codigo
+\usepackage{fancyhdr}			% Headers y pies de página
+\usepackage{multicol}			% Dos columnas en una misma pagina http://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
+\usepackage{blindtext}			% Se usa para el paragraph molón (intro después de la sección paragraph)
+\usepackage{ textcomp }
+\usepackage{bussproofs}
+
+% Paquetes de matemáticas
+\usepackage{amsmath}		% Mates en general
+\usepackage{amsthm}			% Teoremas, proposiciones,...
+\usepackage{amssymb}		% Símbolos, más flechas...
+\usepackage{mathrsfs}		% Letras muy rimbombantes
+%\usepackage{stmaryrd} 	% Corchetes para semánticas
+\usepackage{bussproofs}
+
+
+\usepackage{color}
+% Colores 
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.8,0.8,0.8}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+%Otros
+\usepackage{nag} 					% Avisa de metodos deprecated
+
+% Estilo del documento
+\geometry{margin=2cm}					% Margen de 3cm
+\geometry{a4paper}						% Papel A4
+%\setlength{\parindent}{1.5em}			% Sangría en primera linea 
+\setlength{\parskip}{0.5\baselineskip}	% Separación entre párrafos
+\setcounter{tocdepth}{2}				% Table of contents hasta subsection
+
+% Definición de Estilos de amsthm
+\theoremstyle{plain}
+\newtheorem{tma}{Teorema}[section]
+\newtheorem{prop}[tma]{Proposición}
+\newtheorem{lema}[tma]{Lema}
+\newtheorem{corol}[tma]{Corolario}
+
+\theoremstyle{definition}
+\newtheorem*{ejem}{Ejemplo}
+\newtheorem*{obs}{Observación} 
+\newtheorem*{ejer}{Ejercicio}
+\newtheorem*{notat}{Notación}
+\newtheorem{demo}{Demostración}
+\newtheorem{defi}[tma]{Definición} 
+
+% Tikz mierdas
+\usepackage{tikz}			% Paquete para dibujar categorías, automatas...
+\usetikzlibrary{automata} 	% Librería para dibujar autómatas
+\usetikzlibrary{arrows} 	% Librería para los diferentes tipos de flechas (e.g. inclusión)
+
+\usetikzlibrary[shapes.arrows]
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.footprints}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{fit}
+
+% Configuración Tikz
+\tikzset{->, >=stealth', shorten >=1pt, auto, node distance=2cm, semithick, baseline=(current bounding box.center)}
+
+% Listing	
+\lstset{
+  columns=fullflexible,
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  inputencoding=utf8,
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  literate= {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+			{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1
+			{_}{{\_}}1 {^}{{\textasciicircum}}1,
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=C++,                 % the language of the code
+  morekeywords={ll,ii,vi,vii,vvi,vll,mii,ld,point,vect,line,circle,polygon, each},
+            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,                       % sets default tabsize to 2 spaces
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  texcl=true,
+  morecomment=[l][basicstyle]{http://}
+}
+
+% Config Headers y footers
+%\pagestyle{fancy}
+%\fancyhf{}
+%\renewcommand{\sectionmark}[1]{\markright{#1}{}}		%No muestra los números de la seccion en el header
+%\renewcommand{\subsectionmark}[1]{\markright{#1}{}}		%No muestra los números de la subseccion en el header
+%\renewcommand{\subsubsectionmark}[1]{\markright{#1}{}}	%No muestra los números de la subsubseccion en el header
+
+% Paragraph Molon
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{0ex}%
+   {-3.25ex plus -1ex minus -0.2ex}%
+   {1ex plus 0.2ex}%
+   {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% Config nombres captions:
+\renewcommand{\lstlistingname}{Algorithm}
+
+%\rhead{\fancyplain{}{}} % predefined ()
+%\lhead{\fancyplain{}{\rightmark }} % 1. sectionname, 1.1 subsection name etc
+%\cfoot{\fancyplain{}{\thepage}}
+
+
+% Reglas
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}	% Regla para el titulo
+\newcommand*\xor{\oplus}				% Simbolo xor
+
+\renewcommand{\arraystretch}{1.5}%Esto es para cambiar el espacio entre filas dentro del entorno tabular
+\usepackage{marvosym} %pintar un teléfono movil y una carta \Mobilefone
+\usepackage{multirow}
+\hypersetup{colorlinks=true, linkcolor=myblue, hidelinks}
+%===
+%\name{MiNombre}
+
+%\address{  \\   \\        }
+%Sex Male | Date of birth --/--/---- | Nationality Spanish
+\begin{document}
+
+\begin{tabular}{l r}
+
+\multirow{3}{*}{\Huge \textbf{Nombre Apellido1 Apellido2}} 
+
+										& \small Calle falsa 123 \\
+										& \small Cuidad (Pais) Postal Code: 12345\\
+										& \small \Mobilefone \ \ (+34) 666666666 \\
+\huge \textcolor{gray}{\textbf{Curriculum Vitae}}					&\small \Letter \ \ \href{mailto:hola@gmail.com}{hola@gmail.com}
+
+\end{tabular}
+
+
+\section*{\color{mygreen}Educación}
+	
+\begin{tabular}{p{2cm} p{13.5cm}}	
+Septiembre $2012$-Ahora		& \textbf{Mi carrera en mi universidad (país). } 
+\\
+							& \textbf{Temario:}
+							
+							\url{http://www.enlace_al_temario.com} Se puede poner una breve descripción
+							
+							\textbf{Fecha de terminacion esperada:} Junio 2013 
+							
+							\textbf{Nota media:} 10/10
+\\
+
+Agosto, Septiembre $2014$ 	& \textbf{Curso de noseque que hice en verano}
+\\
+							& Descripción del curso \url{https://www.url/al/curso}
+\\
+
+Hasta Junio de $2012$ 			& \textbf{Bachillerato de tal tipo} 
+\\
+
+							& Mi instituto, ciudad, provincia país.
+\\
+\end{tabular}
+
+\section*{\color{mygreen}Premios y reconocimientos} %Varias entradas como esta
+\begin{tabular}{r p{14cm}}
+$2015$ & \textbf{$\textbf{17}^{o}$ puesto} Hackaton internacional en San Benito de la Valduerna, país
+\\
+
+$2015$ &\textbf{Medalla de bronce}, Olimpiada de informática
+\\
+\end{tabular}
+
+\section*{\color{mygreen}Idiomas}
+
+\begin{tabular}{r l}
+Español & \textbf{Lengua materna} \\
+Inglés & \textbf{Fluido} \\
+Francés & \textbf{Básico}
+
+\end{tabular}
+
+\section*{Proyectos}
+\begin{tabular}{r p{14cm}}
+$2014$ & Descripción del proyecto.
+\\
+\end{tabular}
+
+\section*{Experiencia laboral}
+\begin{tabular}{r p{14cm}}
+$2014$ & Descripción.
+\\
+\end{tabular}
+
+\section*{\color{mygreen}Computer skills}
+
+\begin{tabular}{r l}
+\textbf{Sistemas operativos} & GNU/Linux , Windows, Android \\
+
+\textbf{Lenguajes de programación} 	& C++, C, Java, Haskell\\
+								& SQL (Oracle)\\
+								& MATLAB, Octave\\
+								& VHDL, ARM Assembly\\
+								& programación Android, Python, Prolog, Bash \\
+
+\textbf{Redacción}			& LaTeX, Libre Office, Microsoft Office\\
+
+\textbf{IDE}					& Vim, Eclipse, Netbeans, Microsoft Visual Studio, Xilinx \\
+
+
+\textbf{Cuenta de github}				& \url{https://github.com/eticaasdf}\\
+\end{tabular}
+
+
+\end{document}
